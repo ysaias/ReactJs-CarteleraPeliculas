@@ -11,3 +11,12 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+form > a{
+  margin: 1rem;
+}
+
+
+.pointer{
+  cursor: pointer;
+}
