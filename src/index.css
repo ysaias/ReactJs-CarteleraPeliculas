@@ -11,6 +11,7 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+<<<<<<< HEAD
 
 form > a{
   margin: 1rem;
@@ -20,3 +21,5 @@ form > a{
 .pointer{
   cursor: pointer;
 }
+=======
+>>>>>>> 759a93921c0d74b2cecc14a627f57f22707dace2

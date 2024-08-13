@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import FormularioGeneros from "./FormularioGeneros";
 import axios from "axios";
 import { generoCreacionDTO } from "./generos.model";
@@ -36,3 +37,24 @@ export default function CrearGenero() {
     )
 }
 
+=======
+import FomularioGeneros from "./FormularioGeneros";
+
+export default function CrearGenero() {
+  //const history = useHistory();
+
+  return (
+    <>
+      <h3>Crear Genero</h3>
+
+      <FomularioGeneros
+        modelo={{ nombre: "" }}
+        onSubmit={async (valores) => {
+          await new Promise((r) => setTimeout(r, 500));
+          console.log(valores);
+        }}
+      />
+    </>
+  );
+}
+>>>>>>> 759a93921c0d74b2cecc14a627f57f22707dace2

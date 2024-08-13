@@ -9,5 +9,10 @@ export interface cineDTO{
     nombre: string;
     latitud?: number;
     longitud?: number;
+<<<<<<< HEAD
 
 }
+=======
+    
+}
+>>>>>>> 759a93921c0d74b2cecc14a627f57f22707dace2
