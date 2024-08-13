@@ -1,18 +1,33 @@
 import FormularioGeneros from "./FormularioGeneros";
+import axios from "axios";
+import { generoCreacionDTO } from "./generos.model";
+import { urlGeneros } from "../utils/endpoints";
+import { useNavigate } from "react-router-dom";
 
 
 
 export default function CrearGenero() {
 
-    //const navigate = useNavigate();
+  const navigate = useNavigate();
+
+   async function crear(genero: generoCreacionDTO) {
+    
+     try {
+      
+        await axios.post(urlGeneros, genero);
+        navigate('/generos');
+
+     } catch (error) {
+        console.log(error);
+     }
+   }
 
     return (
         <><h3>Crear genero</h3>
 
           <FormularioGeneros modelo={{nombre:''}} 
             onSubmit={ async valores=> {
-                await new Promise( r => setTimeout(r, 3000))
-                console.log(valores);
+               await crear(valores);
             }}
           />
 

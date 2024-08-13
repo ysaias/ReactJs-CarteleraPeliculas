@@ -12,7 +12,9 @@ export default function FormularioGeneros(props: fomularioGeneroProps) {
                 onSubmit={props.onSubmit}
 
                 validationSchema={Yup.object({
-                    nombre: Yup.string().required('Este Campo es requerido').primeraLetraMayuscula()
+                    nombre: Yup.string().required('Este Campo es requerido')
+                    .max(50, 'La longitud máxima es de 50 caracteres')
+                    .primeraLetraMayuscula()
                 })}
 
             >
