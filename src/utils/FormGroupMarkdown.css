@@ -5,19 +5,11 @@
 .form-markdown textarea{
     width: 500px;
     height: 500px;
-<<<<<<< HEAD
     margin-right: 15px
-=======
-    margin-right: 15px;
->>>>>>> 759a93921c0d74b2cecc14a627f57f22707dace2
 }
 
 .form-markdown .markdown-container{
     border: 1px dashed black;
     width: 500px;
     height: 500px;
-<<<<<<< HEAD
-=======
-    
->>>>>>> 759a93921c0d74b2cecc14a627f57f22707dace2
 }

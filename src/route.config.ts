@@ -1,17 +1,17 @@
 import CrearActores from "./actores/CrearActores";
 import EditarActores from "./actores/EditarActores";
-import IndiceAtores from "./actores/IndiceActores";
+import IndiceAtores from "./actores/indiceActores";
 import CrearCines from "./cines/CrearCines";
 import EditarCines from "./cines/EditarCines";
 import IndiceCines from "./cines/IndiceCines";
 import CrearGenero from "./generos/CrearGenero";
 import EditarGenero from "./generos/EditarGenero";
-import IndiceGeneros from "./generos/indiceGeneros";
-import LandingPage from "./landingPage";
+import IndiceGeneros from "./generos/IndiceGeneros";
+import LandingPage from "./LandingPage";
 import CrearPeliculas from "./peliculas/CrearPeliculas";
 import EditarPeliculas from "./peliculas/EditarPeliculas";
 import FiltroPeliculas from "./peliculas/FiltroPeliculas";
-import RedireccionarALandinpage from "./utils/RedirecionarALandingpage";
+import RedireccionarALandinpage from "./utils/RedireccionandoALanding";
 
 const rutas = [
     { path: '/generos/crear', componente: CrearGenero },

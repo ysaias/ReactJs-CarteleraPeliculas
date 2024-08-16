@@ -1,5 +1,5 @@
 import { Pelicula } from "./peliculas.model";
-import css from './PeliculaIndividual.module.css';
+import css from './ListadoPeliculas.module.css';
 
 export default function PeliculaIndividual(props: peluculaIndividualProps){
 

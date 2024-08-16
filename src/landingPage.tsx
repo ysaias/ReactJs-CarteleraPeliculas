@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import ListaPeliculas from "./peliculas/ListaPeliculas";
-import { landingPageDTO } from "./peliculas/peliculas.model";
+import { LandingPageDTO } from "./peliculas/peliculas.model";
 
 export default function LandingPage(){
 
-    const [peliculas, setPeliculas] = useState<landingPageDTO>({});
+    const [peliculas, setPeliculas] = useState<LandingPageDTO>({});
 
   useEffect(() => {
     const timerId = setTimeout(() => {

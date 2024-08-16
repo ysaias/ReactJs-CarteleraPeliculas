@@ -1,5 +1,5 @@
-import { pelicula } from "./peliculas.model"
-import './pelicula.css'
+import { Pelicula } from "./peliculas.model"
+import './PeliculaIndividual.module.css'
 
 export default function PeliculaIndividual(props: peliculaIndividualProps){
    const construirLink = () => `/pelicula/${props.pelicula.id}`;
@@ -17,5 +17,5 @@ export default function PeliculaIndividual(props: peliculaIndividualProps){
 }
 
 interface peliculaIndividualProps{
-    pelicula: pelicula;
+    pelicula: Pelicula;
 }

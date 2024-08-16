@@ -18,7 +18,7 @@ export interface peliculaCreacionDTO{
     actores?: actorPeliculaDTO[];
 }
 
-export interface LandingPageDTP{
+export interface LandingPageDTO{
     enCartelera?: Pelicula[];
     proximosEstrenos?: Pelicula[];
 }

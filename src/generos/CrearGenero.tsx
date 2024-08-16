@@ -1,15 +1,18 @@
-<<<<<<< HEAD
+
 import FormularioGeneros from "./FormularioGeneros";
 import axios from "axios";
 import { generoCreacionDTO } from "./generos.model";
 import { urlGeneros } from "../utils/endpoints";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import MostrarErrores from "../utils/MostrarErrores";
 
 
 
 export default function CrearGenero() {
 
   const navigate = useNavigate();
+  const [errores, setErrores] = useState<string[]>([]);
 
    async function crear(genero: generoCreacionDTO) {
     
@@ -19,13 +22,14 @@ export default function CrearGenero() {
         navigate('/generos');
 
      } catch (error) {
-        console.log(error);
+        setErrores(error.response.data);
+        
      }
    }
 
     return (
         <><h3>Crear genero</h3>
-
+          <MostrarErrores errores={errores}/>
           <FormularioGeneros modelo={{nombre:''}} 
             onSubmit={ async valores=> {
                await crear(valores);
@@ -36,25 +40,3 @@ export default function CrearGenero() {
         </>
     )
 }
-
-=======
-import FomularioGeneros from "./FormularioGeneros";
-
-export default function CrearGenero() {
-  //const history = useHistory();
-
-  return (
-    <>
-      <h3>Crear Genero</h3>
-
-      <FomularioGeneros
-        modelo={{ nombre: "" }}
-        onSubmit={async (valores) => {
-          await new Promise((r) => setTimeout(r, 500));
-          console.log(valores);
-        }}
-      />
-    </>
-  );
-}
->>>>>>> 759a93921c0d74b2cecc14a627f57f22707dace2
