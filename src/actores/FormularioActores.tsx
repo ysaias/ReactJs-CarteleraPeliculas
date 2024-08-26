@@ -1,7 +1,7 @@
 
 import { Form, Formik, FormikHelpers } from "formik";
 import { actorCreacionDTO } from "./actores.model";
-import FromGroupText from "../utils/FormGrouptext";
+import FromGroupText from "../utils/FromGroupText";
 import Button from "../utils/Button";
 import { Link } from "react-router-dom";
 import * as Yup from 'yup';
@@ -13,6 +13,8 @@ export default function FormulaioActores({
     modelo,
     onSubmit
 }: formulaioActoresProps){
+
+    
     return(
         <Formik
             initialValues={modelo}

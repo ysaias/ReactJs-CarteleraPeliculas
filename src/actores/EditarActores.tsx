@@ -1,16 +1,39 @@
 
+
+import EditarEntidad from "../utils/EditarEntidad";
+import { urlActores } from "../utils/endpoints";
+import { convertirActorAFormData } from "../utils/FormDataUtils";
+import { actorDTO, actorCreacionDTO } from "./actores.model";
 import FormulaioActores from "./FormularioActores";
 
 export default function EditarActores(){
+    
+    const transformar = (actor: actorDTO) => {
+        return{
+            nombre: actor.nombre,
+            fotoUrl: actor.foto,
+            biografia: actor.biografia,
+            fechaNacimiento: new Date(actor.fechaNacimiento)
+        }
+    }
+    
+    
     return(
-        <><h3>Editar Actores</h3>
-        <FormulaioActores 
-        modelo={{nombre: 'Ton Holland', 
-            fechaNacimiento: new Date('1983-04-08T00:00:00'),
-            fotoUrl: 'https://m.media-amazon.com/images/M/MV5BMjNjNWY4MGUtZThkNS00Zjk4LWExMjEtMjdlM2NhNjk5ZGNiXkEyXkFqcGdeQXVyMjk3NTUyOTc@._V1_QL75_UX276_.jpg'
-        }}
-            onSubmit={valores => console.log(valores)}
-         />
+        <>
+         <EditarEntidad<actorCreacionDTO, actorDTO>
+            url={urlActores} urlIndice="/actores" nombreEntidad="Actores"
+            transformarFormData={convertirActorAFormData}
+            transformar={transformar}
+        >  
+        {(entidad, editar) => 
+            <FormulaioActores 
+            modelo={entidad}
+                onSubmit={async valores =>  await editar(valores) }
+             />}
+           
+
+        </EditarEntidad>
+        
         </>
     )
 }

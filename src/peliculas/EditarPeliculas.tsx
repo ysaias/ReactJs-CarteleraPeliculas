@@ -1,36 +1,72 @@
-import { cineDTO } from "../cines/cines.model";
-import { generoDTO } from "../generos/generos.model";
+import axios, { AxiosResponse } from "axios";
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { urlPeliculas } from "../utils/endpoints";
 import FormularioPeliculas from "./FormularioPeliculas";
+import { peliculaCreacionDTO, peliculasPutGetDTO } from "./peliculas.model";
+import Cargando from "../utils/Cargando";
+import { convertirPeliculaAFormData } from "../utils/FormDataUtils";
+import MostrarErrores from "../utils/MostrarErrores";
 
 export default function EditarPeliculas() {
-  const generosNoSeleccionados: generoDTO[] = [{ id: 2, nombre: "Drama" }];
 
-  const generosSeleccionados: generoDTO[] = [
-    { id: 1, nombre: "Accion" },
-    { id: 3, nombre: "Comedia" },
-  ];
+  const [pelicula, setPelicula] = useState<peliculaCreacionDTO>();
+  const [peliculaPutGet, setPeliculaPutGet] = useState<peliculasPutGetDTO>();
+  const { id }: any = useParams();
+  const navigate = useNavigate();
+  const [errores, setErrores] = useState<string[]>();
 
-  const cinesSeleccionados: cineDTO[] = [{ id: 1, nombre: "Agora" }];
+  useEffect(() => {
+    axios.get(`${urlPeliculas}/PutGet/${id}`)
+      .then((respuesta: AxiosResponse<peliculasPutGetDTO>) => {
+        const modelo: peliculaCreacionDTO = {
+          titulo: respuesta.data.pelicula.titulo,
+          enCines: respuesta.data.pelicula.enCines,
+          trailer: respuesta.data.pelicula.trailer,
+          posterURL: respuesta.data.pelicula.poster,
+          resumen: respuesta.data.pelicula.resumen,
+          fechaLanzamiento: new Date(respuesta.data.pelicula.fechaLanzamiento)
+        }
 
-  const cinesNoSeleccionados: cineDTO[] = [{ id: 2, nombre: "Sambil" }];
+        setPelicula(modelo);
+        setPeliculaPutGet(respuesta.data);
+
+      })
+  }, [id])
+
+  async function editar(peliculaEditar: peliculaCreacionDTO) {
+    try {
+      console.log(peliculaEditar)
+      const formData = convertirPeliculaAFormData(peliculaEditar);
+      await axios({
+        method: 'put',
+        url: `${urlPeliculas}/${id}`,
+        data: formData,
+        headers: { 'Content-Type': 'multipart/form-data' }
+      })
+      navigate(`/pelicula/${id}`);
+
+    }
+    catch (error) {
+      setErrores(error.response.data);
+      console.log(error.response);
+    }
+  }
 
   return (
     <>
       <h3>Editar Peliculas</h3>
+      <MostrarErrores errores={errores} />
+      {pelicula && peliculaPutGet ? <FormularioPeliculas
+        actoresSeleccionados={peliculaPutGet.actores}
+        cinesSeleccionados={peliculaPutGet.cinesSeleccionados}
+        cinesNoSeleccionados={peliculaPutGet.cinesNoSeleccionados}
+        generosNoSeleccionados={peliculaPutGet.generosNoSeleccionados}
+        generosSeleccionados={peliculaPutGet.generosSeleccionados}
+        modelo={pelicula}
+        onSubmit={ async valores => await editar(valores)}
+      /> : <Cargando />}
 
-      <FormularioPeliculas
-        cinesSeleccionados={cinesSeleccionados}
-        cinesNoSeleccionados={cinesNoSeleccionados}
-        generosNoSeleccionados={generosNoSeleccionados}
-        generosSeleccionados={generosSeleccionados}
-        modelo={{
-          titulo: "Spider-Man",
-          enCines: true,
-          trailer: "url",
-          fechaLanzamiento: new Date("2019-01-01T00:00:00"),
-        }}
-        onSubmit={(valores) => console.log(valores)}
-      />
     </>
   );
 }
