@@ -1,3 +1,22 @@
+# Interceptores con Axios para Manejo de JWT:
+
+Se han configurado interceptores de Axios en el frontend para adjuntar automáticamente el JWT a todas las solicitudes HTTP salientes.
+Estos interceptores toman el token JWT almacenado (por ejemplo, en localStorage o sessionStorage) y lo agregan al encabezado de autorización de cada petición, facilitando la autenticación del lado del cliente y la autorización en el backend.
+
+# Gestión del Estado de Autenticación:
+
+Se ha implementado una lógica para manejar el estado de autenticación del usuario, verificando si un JWT está presente y es válido.
+En caso de que el JWT expire o sea inválido, se manejan los errores de autenticación y se redirige al usuario a la página de inicio de sesión.
+
+# Autorización Basada en Claims en la Interfaz de Usuario:
+
+Se ha implementado lógica de autorización en el frontend para mostrar u ocultar componentes de la interfaz de usuario en función de los claims del usuario.
+Por ejemplo, ciertas secciones o botones de administración solo se muestran si el usuario tiene el claim "EsAdmin".
+
+# Manejo de Errores de Autorización y Autenticación:
+
+Se han configurado mecanismos para manejar errores de autorización (como respuestas 403) y errores de autenticación (como respuestas 401) en el frontend, proporcionando mensajes claros a los usuarios y gestionando redirecciones adecuadas.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
