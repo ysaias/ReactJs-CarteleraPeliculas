@@ -5,3 +5,4 @@ export const urlActores = `${apiURL}/actores`
 export const urlCines = `${apiURL}/cines`
 export const urlPeliculas = `${apiURL}/peliculas`
 export const urlCuentas = `${apiURL}/cuentas`
+export const urlRatings = `${apiURL}/rating`

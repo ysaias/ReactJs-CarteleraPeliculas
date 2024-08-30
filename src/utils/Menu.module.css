@@ -1,8 +1,14 @@
-
-
 /* Menu.module.css */
 .active {
-    font-weight: bold;
-    color: red;
-  }
-  
+  font-weight: bold;
+  color: #007bff; /* Cambia este color al que desees para el link activo */
+}
+
+.nav-link {
+  margin-right: 10px; /* Mantén el espacio entre los links */
+  /*color: #000; /* Color predeterminado de los links */
+}
+
+.nav-link:hover {
+  color: #0056b3; /* Cambia el color al pasar el cursor por encima */
+}

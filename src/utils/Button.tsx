@@ -2,7 +2,7 @@
 
 
 
-import { ReactNode } from "react";
+import { CSSProperties, ReactNode } from "react";
 
 interface ButtonProps {
     children: ReactNode;
@@ -10,12 +10,13 @@ interface ButtonProps {
     type?: "button" | "submit" | "reset";
     disabled?: boolean;
     className?: string;
+    style?: CSSProperties ;
 }
 
-export default function Button({ children, onClick = () => {}, type = "button", disabled, className="btn btn-primary" }: ButtonProps) {
+export default function Button({ children, onClick = () => {}, type = "button", disabled, className="btn btn-primary", style }: ButtonProps) {
     return (
-        <button disabled={disabled} type={type} className={className} onClick={onClick}>
-            {children}
+        <button disabled={disabled} type={type} className={className} onClick={onClick} style={style}>
+            {children} 
         </button>
     );
 }

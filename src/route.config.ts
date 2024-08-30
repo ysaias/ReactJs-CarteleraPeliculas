@@ -1,6 +1,8 @@
 import CrearActores from "./actores/CrearActores";
 import EditarActores from "./actores/EditarActores";
-import IndiceAtores from "./actores/indiceActores";
+import IndiceAtores from "./actores/IndiceActores";
+import Indiceusuarios from "./auth/indiceUsuarios";
+import Login from "./auth/Login";
 import Registro from "./auth/Registro";
 import CrearCines from "./cines/CrearCines";
 import EditarCines from "./cines/EditarCines";
@@ -14,6 +16,7 @@ import DetallePelicula from "./peliculas/DetallePelicula";
 import EditarPeliculas from "./peliculas/EditarPeliculas";
 import FiltroPeliculas from "./peliculas/FiltroPeliculas";
 import RedireccionarALandinpage from "./utils/RedireccionandoALanding";
+
 
 const rutas = [
     { path: '/generos/crear', componente: CrearGenero, esAdmin: true },
@@ -34,6 +37,8 @@ const rutas = [
     { path: '/peliculas/filtrar', componente: FiltroPeliculas },
 
     { path: '/registro', componente: Registro },
+    { path: '/login', componente: Login },
+    { path: '/usuarios', componente: Indiceusuarios, esAdmin: true },
     
     { path: '/', componente: LandingPage, exact: true },
 

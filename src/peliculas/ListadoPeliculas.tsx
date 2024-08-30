@@ -1,4 +1,4 @@
-import PeliculaIndividual from "./PeliculaIndividual";
+import PeliculaIndividual from "./Peliculaindividual";
 import { peliculaDTO } from "./peliculas.model";
 import css from './ListadoPeliculas.module.css'
 import ListadoGenerico from "../utils/ListadoGenerico";

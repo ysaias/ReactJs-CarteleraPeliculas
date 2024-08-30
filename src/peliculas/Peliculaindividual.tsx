@@ -21,25 +21,27 @@ export default function PeliculaIndividual(props: peluculaIndividualProps) {
     }
 
     return (
+
         <div className={css.div}>
-            <a href={construirLink()}>
+            
+            <Link to={construirLink()}>
                 <img alt="imagen individual" src={props.pelicula.poster} />
-            </a>
+            </Link>
             <p>
-                <a href={construirLink()} > {props.pelicula.titulo}</a>
+                <Link to={construirLink()} > {props.pelicula.titulo}</Link>
             </p>
 
             <Autorizado role="admin"
                 autorizado={
-                
-                <div>
-                    <Link style={{ marginRight: '1rem' }} className="btn btn-info"
-                        to={`/peliculas/editar/${props.pelicula.id}`}>Editar</Link>
-                    <Button className="btn btn-danger"
-                        onClick={() => confirmar(() => borrarPelilcula())}>Borarr</Button>
-                </div>
-                }        
-            
+
+                    <div>
+                        <Link style={{ marginRight: '1rem' }} className="btn btn-info"
+                            to={`/peliculas/editar/${props.pelicula.id}`}>Editar</Link>
+                        <Button className="btn btn-danger"
+                            onClick={() => confirmar(() => borrarPelilcula())}>Borarr</Button>
+                    </div>
+                }
+
             />
 
         </div>

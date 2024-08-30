@@ -9,7 +9,12 @@ export interface credencialesUsuario{
     password: string;
 }
 
-export interface respuestaAutentificacion{
+export interface respuestaAutenticacion {
     token: string;
     expiracion: Date;
-}   
+}  
+
+export interface usuarioDTO{
+    id: string;
+    email: string;
+}

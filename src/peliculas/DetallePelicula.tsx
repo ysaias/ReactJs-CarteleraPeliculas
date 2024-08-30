@@ -2,12 +2,14 @@ import { useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router-dom"
 import { peliculaDTO } from "./peliculas.model";
 import axios, { AxiosResponse } from "axios";
-import { urlPeliculas } from "../utils/endpoints";
+import { urlPeliculas, urlRatings } from "../utils/endpoints";
 import Cargando from "../utils/Cargando";
 import { Link } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import Mapa from "../utils/Mapa";
 import { coordenadaDTO } from "../utils/coordenadas.model";
+import Rating from "../utils/Rating";
+import Swal from "sweetalert2";
 
 export default function DetallePelicula() {
 
@@ -15,24 +17,13 @@ export default function DetallePelicula() {
     const [pelicula, setPelicula] = useState<peliculaDTO>();
 
     useEffect(() => {
-        const cancelarSolicitud = axios.CancelToken.source();
-        
-        axios.get(`${urlPeliculas}/${id}`, { cancelToken: cancelarSolicitud.token })
-          .then((respuesta: AxiosResponse<peliculaDTO>) => {
-            respuesta.data.fechaLanzamiento = new Date(respuesta.data.fechaLanzamiento);
-            setPelicula(respuesta.data);
-          }).catch(error => {
-            if (axios.isCancel(error)) {
-              console.log('Solicitud cancelada');
-            } else {
-              console.log(error.data)
-            }
-          });
-      
-        return () => {
-          cancelarSolicitud.cancel();
-        };
-      }, [id]);
+        axios.get(`${urlPeliculas}/${id}`)
+            .then((respuesta: AxiosResponse<peliculaDTO>) => {
+                console.log(respuesta.data);
+                respuesta.data.fechaLanzamiento = new Date(respuesta.data.fechaLanzamiento);
+                setPelicula(respuesta.data);
+            })
+    }, [id])
       
 
       const coordenadas = useMemo(() => {
@@ -62,11 +53,21 @@ export default function DetallePelicula() {
         return `https://www.youtube.com/embed/${video_id}`
     }
 
+    async function onVote(voto: number){
+        try {
+            console.log('Enviando datos:', {puntuacion: voto, peliculaId: id});
+            await axios.post(urlRatings, {puntuacion: voto, peliculaId: id});
+            Swal.fire({icon: 'success', title: 'Voto recibido'});
+        } catch (error) {
+            console.error('Error al votar:', error); // Detalles adicionales del error
+        }
+    }
+
     return (
         pelicula ?
-
+            
             <div style={{ display: "flex" }}>
-
+                
                 <div>
                     <h2>{pelicula.titulo} ({pelicula.fechaLanzamiento.getFullYear()})</h2>
                     {pelicula.generos?.map(genero =>
@@ -77,8 +78,11 @@ export default function DetallePelicula() {
                             {genero.nombre}
                         </Link>)
                     }
-
-                    | {pelicula.fechaLanzamiento.toDateString()}
+                      
+                    | {pelicula.fechaLanzamiento.toDateString()} 
+                    | Voto promedio: {pelicula.promedioVoto}
+                     |  Tu voto: <Rating maximoValor={5} 
+                        valorSeleccionado={pelicula.votoUsuario!} onChange={onVote} />
 
                     <div style={{ display: 'flex', marginTop: '1rem' }}>
                         <span style={{ display: 'inline-block', marginRight: '1rem' }}>
@@ -99,7 +103,7 @@ export default function DetallePelicula() {
 
                     {pelicula.resumen ?
                         <div style={{ marginTop: '1rem' }}>
-                            <h3>Resumen</h3>
+                            <h3>Resumen </h3>
                             <div>
                                 <ReactMarkdown>{pelicula.resumen}</ReactMarkdown>
                             </div>

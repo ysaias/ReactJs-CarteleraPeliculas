@@ -6,7 +6,7 @@ import { urlActores } from "../utils/endpoints";
 export default function IndiceActores() {
     return (
         <>
-            <IndiceEntidad<actorDTO>
+             <IndiceEntidad<actorDTO>
                 url={urlActores} urlCrear="/actores/crear" titulo="Actores"
                 nombreEntidad="Actor"
             >
