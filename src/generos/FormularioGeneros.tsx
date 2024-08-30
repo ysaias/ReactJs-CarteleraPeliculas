@@ -3,7 +3,7 @@ import { Form, Formik, FormikHelpers } from "formik";
 import { Link } from "react-router-dom";
 import * as Yup from 'yup';
 import Button from "../utils/Button";
-import FromGroupText from "../utils/FormGrouptext";
+import FromGroupText from "../utils/FromGroupText";
 import { generoCreacionDTO } from "./generos.model";
 
 export default function FormularioGeneros(props: fomularioGeneroProps) {

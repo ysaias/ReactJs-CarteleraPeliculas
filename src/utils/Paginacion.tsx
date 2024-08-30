@@ -21,16 +21,12 @@ export default function Paginacion({
             activo: false
         });
 
-        
-        console.log("Pagina Actual "+cantidadTotalDePagina)
         for(let i = 1; i <= cantidadTotalDePagina; i++)
         {
 
-            console.log("Pagina Actual "+paginaActual)
-            console.log("i "+i)
             if(i >= paginaActual - radio && i <= paginaActual + radio)
                 {
-                    console.log("Texto "+i)
+                   
                     links.push({
                         texto: `${i}`,
                         activo: paginaActual === i,

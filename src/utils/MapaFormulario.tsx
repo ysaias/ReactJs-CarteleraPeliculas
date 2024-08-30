@@ -3,7 +3,7 @@ import { useFormikContext } from 'formik';
 import { coordenadaDTO } from './coordenadas.model';
 import Mapa from './Mapa';
 
-export default function MapaFormulario({ coordenadas = [], campoLat, campoLng }: mapaFormularioProps) {
+export default function MapaFormulario({ coordenadas, campoLat, campoLng }: mapaFormularioProps) {
 
     const { values } = useFormikContext<any>();
 
@@ -16,6 +16,7 @@ export default function MapaFormulario({ coordenadas = [], campoLat, campoLng }:
         <Mapa 
             coordenadas={coordenadas}
             manejarClickMapa={actualizarCampos}
+           
         />
     )
 }
